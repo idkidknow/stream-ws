@@ -1,3 +1,7 @@
+//! [![docs.rs](https://img.shields.io/docsrs/stream-ws)](https://docs.rs/crate/stream-ws/latest)
+//! [![repo](https://img.shields.io/badge/repo-stream--ws-blue?logo=github)](https://github.com/idkidknow/stream-ws)
+//! [![crates-io](https://img.shields.io/badge/crates--io-stream--ws-blue)](https://crates.io/crates/stream-ws)
+//! 
 //! A layer over WebSocket enables carrying byte stream, for both native and WebAssembly.
 //!
 //! Providing methods able to wrap any WebSocket message stream implementation,
@@ -14,18 +18,31 @@
 //! With feature `tungstenite`.
 //!
 //! For `WebSocketStream` in either crate `tokio-tungstenite` or `async-tungstenite`,
-//! use `let stream = stream_ws::tungstenite::WsByteStream::new(inner)`.
+//! use
+//! 
+//! ```rust
+//! let stream = stream_ws::tungstenite::WsByteStream::new(inner)
+//! ```
 //!
 //! ## Gloo (for WebAssembly)
 //!
 //! With feature `gloo`.
 //!
-//! use `let stream = stream_ws::gloo::WsByteStream::new(inner)`.
+//! use
+//! 
+//! ```rust
+//! let stream = stream_ws::gloo::WsByteStream::new(inner)
+//! ```
 //!
 //! ## Wrapping underlying stream of other WebSocket implementation
 //!
 //! Your WebSocket implementation should have a struct `S` satisfying trait bound
-//! `Stream<Item = Result<Msg, E>> + Sink<Msg, Error = E> + Unpin` where `Msg` and `E`
+//! 
+//! ```rust
+//! Stream<Item = Result<Msg, E>> + Sink<Msg, Error = E> + Unpin
+//! ```
+//! 
+//! where `Msg` and `E`
 //! are message and error type of the implementation.
 //!
 //! Create a struct `Handler` and impl [`WsMessageHandle`], which is easy, and then
@@ -33,9 +50,11 @@
 //!
 //! # Crate features
 //!
-//! - `tokio`: impl `tokio`'s [`AsyncRead`], [`AsyncBufRead`] and [`AsyncWrite`] variants
+//! - `tokio`: impl `tokio`'s `AsyncRead`, `AsyncBufRead` and `AsyncWrite` variants
 //! - `tungstenite`: handlers for message and error type from crate `tungstenite`
 //! - `gloo`: handlers for message and error type from crate `gloo`
+
+#![cfg_attr(docsrs, feature(doc_cfg))]
 
 #[cfg(feature = "gloo")]
 #[cfg_attr(docsrs, doc(cfg(feature = "gloo")))]

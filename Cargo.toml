@@ -1,6 +1,6 @@
 [package]
 name = "stream-ws"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["idkana <ifidkidknow@gmail.com>"]
 edition = "2021"
 description = "A layer over WebSocket enables carrying byte stream, for both native and WebAssembly."
@@ -14,6 +14,7 @@ exclude = ["/examples/web-client"]
 
 [package.metadata.docs.rs]
 all-features = true
+rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs"]
 
 [dependencies]
