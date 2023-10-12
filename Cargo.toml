@@ -1,0 +1,46 @@
+[package]
+name = "stream-ws"
+version = "0.1.0"
+authors = ["idkana <ifidkidknow@gmail.com>"]
+edition = "2021"
+description = "A layer over WebSocket enables carrying byte stream, for both native and WebAssembly."
+homepage = "https://github.com/idkidknow/stream-ws"
+repository = "https://github.com/idkidknow/stream-ws"
+license = "MIT OR Apache-2.0"
+keywords = ["websocket", "stream", "io", "async", "wasm"]
+categories = ["network-programming", "asynchronous", "web-programming::websocket", "wasm"]
+readme = "README.md"
+exclude = ["/examples/web-client"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[dependencies]
+futures = "0.3"
+pin-project = "1"
+tokio = { version = "1", optional = true }
+tungstenite = { version = "0.20", optional = true }
+gloo-net = { version = "0.4", optional = true }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }
+tokio-tungstenite = "0.20"
+
+[features]
+default = ["tokio", "tungstenite", "gloo"]
+tokio = ["dep:tokio"]
+tungstenite = ["dep:tungstenite"]
+gloo = ["dep:gloo-net"]
+
+[[example]]
+name = "echo_server"
+path = "examples/echo_server.rs"
+
+[[example]]
+name = "print_self_server"
+path = "examples/print_self_server.rs"
+
+[[example]]
+name = "std_io_client"
+path = "examples/std_io_client.rs"
